@@ -1,0 +1,244 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+  color: #0E1726;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Estilos para el contenedor de preguntas */
+.pregunta {
+  margin-bottom: 24px;
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeIn 0.4s ease-out;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.pregunta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.pregunta > label {
+  display: block;
+  margin-bottom: 18px;
+  font-weight: 600;
+  font-size: 17px;
+  color: #1e293b;
+  letter-spacing: -0.01em;
+}
+
+/* Select moderno */
+.pregunta select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  background: white;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230A3D91'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  padding-right: 40px;
+}
+
+.pregunta select:hover {
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+}
+
+.pregunta select:focus {
+  outline: none;
+  border-color: #0A3D91;
+  box-shadow: 0 0 0 4px rgba(10, 61, 145, 0.1);
+  background-color: white;
+}
+
+/* Textarea moderno */
+.pregunta textarea,
+.pregunta input[type="text"] {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.pregunta textarea:hover,
+.pregunta input[type="text"]:hover {
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+}
+
+.pregunta textarea:focus,
+.pregunta input[type="text"]:focus {
+  outline: none;
+  border-color: #0A3D91;
+  box-shadow: 0 0 0 4px rgba(10, 61, 145, 0.1);
+  background-color: white;
+}
+
+.pregunta textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Radio y Checkbox modernos */
+.pregunta > div {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.pregunta > div:hover {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+.pregunta div input[type="radio"],
+.pregunta div input[type="checkbox"] {
+  margin-right: 14px;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  accent-color: #0A3D91;
+  flex-shrink: 0;
+}
+
+.pregunta div label {
+  font-weight: normal;
+  margin-bottom: 0;
+  cursor: pointer;
+  flex: 1;
+  color: #334155;
+  font-size: 15.5px;
+}
+
+/* Escalas de valoración */
+.rating-scale {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.rating-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 60px;
+}
+
+.rating-option input[type="radio"] {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+}
+
+.rating-option label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Progress indicator */
+.progress-bar {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0A3D91 0%, #1e40af 100%);
+  transition: width 0.3s ease;
+}
+
+/* Animación para checkboxes */
+@keyframes checkmark {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pregunta div input[type="checkbox"]:checked,
+.pregunta div input[type="radio"]:checked {
+  animation: checkmark 0.3s ease;
+}
+
+/* Estilos para el header */
+.header-gradient {
+  background: linear-gradient(135deg, #0A3D91 0%, #1e40af 100%);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilos para botones */
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+button:active::before {
+  width: 300px;
+  height: 300px;
+}
