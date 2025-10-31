@@ -83,6 +83,7 @@ def root():
     return {"message": "API de Encuestas funcionando correctamente"}
 
 @app.get("/health")
+@app.head("/health")
 def health_check(db: Session = Depends(get_db)):
     """Endpoint para mantener la BD activa y verificar el estado del servicio"""
     from sqlalchemy import text
