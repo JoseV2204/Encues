@@ -17,9 +17,20 @@ except ImportError:
 
 app = FastAPI()
 
-# Conexión a SQLite con variable de entorno
+# Conexión a la base de datos (PostgreSQL en producción, SQLite en desarrollo)
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./encuesta.db")
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+
+# Render usa postgresql:// pero SQLAlchemy necesita postgresql://
+# Convertir si es necesario
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+# Configurar engine según el tipo de BD
+if DATABASE_URL.startswith("sqlite"):
+    engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+else:
+    engine = create_engine(DATABASE_URL)
+    
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
@@ -70,3 +81,13 @@ def ver_respuestas(db: Session = Depends(get_db)):
 @app.get("/")
 def root():
     return {"message": "API de Encuestas funcionando correctamente"}
+
+@app.get("/health")
+def health_check(db: Session = Depends(get_db)):
+    """Endpoint para mantener la BD activa y verificar el estado del servicio"""
+    try:
+        # Hacer una consulta simple para mantener la BD activa
+        db.execute("SELECT 1")
+        return {"status": "healthy", "database": "connected"}
+    except Exception as e:
+        return {"status": "unhealthy", "error": str(e)}
