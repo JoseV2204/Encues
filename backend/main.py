@@ -85,9 +85,10 @@ def root():
 @app.get("/health")
 def health_check(db: Session = Depends(get_db)):
     """Endpoint para mantener la BD activa y verificar el estado del servicio"""
+    from sqlalchemy import text
     try:
         # Hacer una consulta simple para mantener la BD activa
-        db.execute("SELECT 1")
+        db.execute(text("SELECT 1"))
         return {"status": "healthy", "database": "connected"}
     except Exception as e:
         return {"status": "unhealthy", "error": str(e)}
