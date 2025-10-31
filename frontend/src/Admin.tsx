@@ -32,7 +32,8 @@ function Admin() {
   const [error, setError] = useState('');
 
   // Contraseña hardcodeada (en producción debería ser más segura)
-  const ADMIN_PASSWORD = 'tesis1234#';
+  // Contraseña desde variables de entorno
+  const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'admin123';
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
