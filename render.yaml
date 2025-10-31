@@ -13,7 +13,7 @@ services:
           name: encuesta-db
           property: connectionString
       - key: CORS_ORIGINS
-        value: https://encuesta-frontend-hoof.onrender.com
+        value: https://encuesta-frontend-75wh.onrender.com
       - key: PYTHON_VERSION
         value: 3.11.0
 
