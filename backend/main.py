@@ -6,10 +6,14 @@ from sqlalchemy import create_engine, Column, Integer, String, Text
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.ext.declarative import declarative_base
 from pydantic import BaseModel
-from dotenv import load_dotenv
 
-# Cargar variables de entorno
-load_dotenv()
+# Intentar cargar python-dotenv si está disponible
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    print("python-dotenv no disponible, usando variables de entorno del sistema")
+    pass
 
 app = FastAPI()
 
